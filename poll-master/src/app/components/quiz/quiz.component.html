@@ -1,0 +1,11 @@
+<div *ngIf='hasExpired'>
+    Quiz timer over
+</div>
+<div class="question" *ngIf="question && !hasExpired">
+    <h2 class="mat-headline">{{question.id}}.{{question.text}}</h2>
+    <app-answer *ngFor="let answer of (question.answers)" [answer]="answer" (submit)="submitAnswer($event)">
+    </app-answer>
+</div>
+<div *ngIf='!question || hasExpired'>Waiting for a new question</div>
+<div *ngIf='!hasExpired && question && !hasCompletedResponse'>Please cast your vote</div>
+<div *ngIf='hasCompletedResponse'>Your vote has been recorded for prev question</div>
